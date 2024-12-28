@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Classification</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Video Game Review Sentiment Classifier</h1>
+        <form method="POST" action="/classify">
+            <label for="game">Select a Game:</label>
+            <select name="game" id="game">
+                {% for game in games %}
+                <option value="{{ game }}">{{ game }}</option>
+                {% endfor %}
+            </select>
+            <label for="review">Write a Review:</label>
+            <textarea name="review" id="review" rows="5" required></textarea>
+            <button type="submit">Classify Sentiment</button>
+        </form>
+        {% if sentiment %}
+        <div class="result">
+            <h3>Result:</h3>
+            <p><strong>Review:</strong> {{ review }}</p>
+            <p><strong>Game:</strong> {{ selected_game }}</p>
+            <p><strong>Sentiment:</strong> {{ sentiment }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
